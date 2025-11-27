@@ -1,0 +1,45 @@
+.card {
+    width: 120px;
+    height: 160px;
+    border-radius: 20px;
+    overflow: hidden;
+    color: var(--text1-color);
+    background-size: cover;          
+    background-position: center;     
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; 
+    flex-shrink: 0;
+}
+
+.overlay {
+    background-image: linear-gradient(
+        to top, 
+        rgba(93, 63, 239, 0.9) 0%, 
+        rgba(93, 63, 239, 0.4) 60%,
+        rgba(0,0,0,0.1) 100% 
+    );
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 3px; 
+}
+
+.itemTitle {
+    font-size: 8px;
+}
+
+.currentAmount {
+    font-size: 14px; 
+    font-weight: bold;
+    line-height: 1; 
+}
+
+.targetAmount {
+    font-size: 7px;
+    color: var(--text1-color);
+}

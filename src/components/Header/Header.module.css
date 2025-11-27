@@ -1,0 +1,57 @@
+.header{
+    background-color: var(--primary-color);
+    padding: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 6px 5px rgba(0,0,0,0.2);
+    margin-bottom: 15px;
+}
+
+.profileIcon{
+    border-radius: 30px;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    display: block;
+}
+
+.childHeader{
+    color: var(--text1-color);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.parentHeader{
+    position: relative;
+    width: 120px;
+}
+
+.balance{
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--text1-color);
+    font-weight: bold;
+    width: 82px;
+}
+
+.action{
+    position: absolute;
+    bottom: -43px;
+    left: 13px;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    background-color: var(--background-color);
+    padding: 5px 9px;
+    border-radius: 15px;
+    box-shadow: 0 4px 5px rgba(0,0,0,0.2);
+}
+
+.action button{
+    height: 20px;
+}

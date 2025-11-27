@@ -1,0 +1,35 @@
+.card{
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;       
+    max-width: 160px; 
+    height: auto;  
+}
+
+.income{
+    background-color: var(--primary-color);
+    color: var(--text1-color);
+}
+
+.expense{
+    background-color: var(--secondary-color);
+    color: var(--text2-color);
+}
+
+.text{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.type{
+    font-size: 11px;
+}
+
+.amount{
+    font-size: 15px;
+    font-weight: bold;
+}
