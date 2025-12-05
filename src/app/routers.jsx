@@ -9,6 +9,7 @@ import CreatePasswordPage from "../pages/CreatePasswordPage/CreatePasswordPage";
 import ChatPage from "../pages/ChatPage/ChatPage";
 import AutoPaymentPage from "../pages/AutoPaymentPage/AutoPaymentPage";
 import CreateTaskPage from "../pages/CreateTaskPage/CreateTaskPage";
+import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
 
 export const routers = createBrowserRouter([
   {
@@ -50,5 +51,9 @@ export const routers = createBrowserRouter([
   {
     path: "/createtask",
     element: <CreateTaskPage />,
+  },
+  {
+    path: "/*",
+    element: <NotFoundPage />,
   },
 ]);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from "framer-motion";
 import styles from './Header.module.css';
 import topUP from '../../assets/topUp.png';
 import token from '../../assets/token.png';
@@ -8,8 +9,13 @@ const Header = ({ userType, img, content}) => {
     const isChild = userType === 'child';
 
     return (
-        <div className={styles.header}>
-            <img src={img} alt="pofileiIcon" className={styles.profileIcon} />
+        <motion.div 
+            className={styles.header}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+        >
+            <img loading="lazy" src={img} alt="pofileiIcon" className={styles.profileIcon} />
             {isChild ? (
                 <div className={styles.childHeader}>
                     <p>Привет, {content}!</p>
@@ -22,14 +28,14 @@ const Header = ({ userType, img, content}) => {
                     </div>
                     <div className={styles.action}>
                         <button>
-                            <img src={topUP} alt="TopUp" />
+                            <img src={topUP} alt="TopUp" loading="lazy"/>
                         </button>
                         <p>Пополнить</p>
                     </div>
                 </div>
             )}
-            <img src={notification} alt="notificationIcon" />
-        </div>
+            <img src={notification} alt="notificationIcon" loading="lazy"/>
+        </motion.div>
     );
 };
 

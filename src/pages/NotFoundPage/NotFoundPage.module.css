@@ -1,0 +1,39 @@
+.wrapper{
+    height: 100vh;
+    padding: 37px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    text-align: center;
+    position: relative;
+}   
+
+.title{
+    font-size: 150px;
+    font-weight: 900;
+    color: var(--primary-color);
+    margin-bottom: 125px;
+}
+
+.bird{
+    position: absolute;
+    top: 100px;
+    right: 60px;
+}
+
+.comeBackBtn{
+    background-color: var(--primary-color);
+    padding: 16px 62px;
+    color: white;
+    border-radius: 30px;
+    font-size: 20px;
+    margin-top: 43px;
+}
+
+.big{
+    font-size: 32px;
+    font-weight: 500;
+}

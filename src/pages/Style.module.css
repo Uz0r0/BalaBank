@@ -200,26 +200,25 @@ input {
 .chatPage {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: calc(var(--vh) * 100);
+    background: white;
 }
 
 .chatContainer {
-    height: 72vh;
-    flex-grow: 1; 
-    padding: 20px 16px 0; 
-    overflow-y: auto; 
+    flex: 1;
     display: flex;
     flex-direction: column;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .messagesList {
-    flex-grow: 1;         
+    flex: 1;
     overflow-y: auto; 
     display: flex;
     flex-direction: column;
-    gap: 10px; 
-    padding-bottom: 20px; 
+    gap: 10px;
+    padding: 0 20px;
+    padding-bottom: 80px;
 }
 
 .messageBubble {
@@ -247,31 +246,31 @@ input {
 }
 
 .inputArea {
+    position: sticky;
+    bottom: 0;
+    background: white;
+    padding: 10px;
     display: flex;
     align-items: center;
-    padding: 10px 0;
-    background-color: #FFFFFF; 
-    position: sticky; 
-    bottom: 0;
-    margin-top: auto; 
+    position: relative;
+    z-index: 50;
+    bottom: 100px;
 }
 
 .chatInput {
     flex-grow: 1;
-    padding: 20px 20px;
+    padding: 18px 20px;
     border: none;
     border-radius: 25px;
     background-color: var(--secondary-color);
     font-size: 16px;
-    margin-right: 10px;
-    position: relative;
 }
 
 .sendButton {
     width: 45px;
     height: 45px;
     position: absolute;
-    right: 15px ;
+    right: 20px;
 }
 
 .space5{

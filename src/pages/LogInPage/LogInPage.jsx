@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext.jsx";
 import api from "../../api.js";
@@ -25,7 +26,6 @@ function LogInPage() {
         formData.append("username", cleanedPhone);
         formData.append("password", password);
 
-        // 1. ЛОГИН (ПОЛУЧЕНИЕ ТОКЕНА)
         const loginRes = await fetch("http://localhost:8000/auth/login", {
             method: "POST",
             headers: {
@@ -42,25 +42,20 @@ function LogInPage() {
 
         localStorage.setItem("token", loginRes.access_token);
 
-        // 2. ПОЛУЧЕНИЕ ДАННЫХ ПОЛЬЗОВАТЕЛЯ (ВКЛЮЧАЯ РОЛЬ)
         const me = await api("/users/me", "GET");
 
-        if (!me || me.detail || !me.role) { // 💡 Добавил проверку на наличие me.role
+        if (!me || me.detail || !me.role) { 
             setError("Ошибка получения профиля или роли пользователя");
             setIsLoading(false);
             return;
         }
 
-        // 3. ПОЛНОЕ ОБНОВЛЕНИЕ КОНТЕКСТА (setRegisterData полностью перезаписывает state)
         setRegisterData(me); 
 
         setIsLoading(false);
 
-        // 4. НАВИГАЦИЯ (с небольшой задержкой для гарантии обновления state)
-        // 💡 Используем таймаут 0мс, чтобы убедиться, что состояние контекста
-        // успеет обновиться до навигации (предотвращает чтение старой роли)
         setTimeout(() => {
-            const userRole = me.role || 'child'; // Защита на случай пустого поля
+            const userRole = me.role || 'child'; 
 
             if (userRole === "parent") {
                 navigate("/parent");
@@ -72,7 +67,17 @@ function LogInPage() {
 
     return (
         <div className={styles.wrapper}>
-            <div className={styles.card}>
+            <motion.div 
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ 
+                    type: "spring",
+                    stiffness: 150,
+                    damping: 15,
+                    duration: 0.4
+                }}
+                className={styles.card}
+            >
                 <h1 className={styles.regTitle}>Войти</h1>
 
                 {error && (
@@ -86,13 +91,21 @@ function LogInPage() {
                         <label>Номер телефона</label>
                         <input
                             type="tel"
-                            placeholder="9 цифр"
-                            value={phoneNumber}
+                            placeholder="+996 XXX-XXX-XXX"
+                            required
+                            value={
+                                phoneNumber
+                                    .replace(/(\d{3})(\d{0,3})(\d{0,3})/, (_, a, b, c) =>
+                                        [a, b, c].filter(Boolean).join(" ")
+                                    )
+                            }
                             onChange={(e) => {
                                 const onlyNums = e.target.value.replace(/\D/g, "");
-                                if (onlyNums.length <= 9) setPhoneNumber(onlyNums);
+
+                                if (onlyNums.length <= 9) {
+                                    setPhoneNumber(onlyNums);
+                                }
                             }}
-                            required
                         />
                     </div>
 
@@ -119,7 +132,7 @@ function LogInPage() {
                 <div className={styles.linkToLogIn}>
                     <span>Нет аккаунта? <a href="/registration">Зарегистрируйтесь</a></span>
                 </div>
-            </div>
+            </motion.div>
         </div>
     );
 }

@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext.jsx";
 import api from "../../api.js";
@@ -74,7 +75,17 @@ function CreatePasswordPage() {
 
     return (
         <div className={styles.wrapper}>
-            <div className={styles.card}>
+            <motion.div 
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ 
+                    type: "spring",
+                    stiffness: 150,
+                    damping: 15,
+                    duration: 0.4
+                }}
+                className={styles.card}
+            >
                 <h1 className={styles.regTitle}>Создайте пароль</h1>
 
                 {error && (
@@ -125,7 +136,7 @@ function CreatePasswordPage() {
                         {isLoading ? "Регистрация..." : "Продолжить"}
                     </button>
                 </form>
-            </div>
+            </motion.div>
         </div>
     );
 }

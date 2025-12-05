@@ -57,7 +57,7 @@ function ChatPage() {
     };
 
     return (
-        <div>
+        <div className={style.chatPage}>
             <Header 
                 userType={userRole}
                 content={headerContent}
@@ -87,7 +87,7 @@ function ChatPage() {
                 <div className={style.inputArea}>
                     <input 
                         type="text"
-                        placeholder="Задайте вопрос Баяу..." 
+                        placeholder="Задайте вопрос Бапи..." 
                         className={style.chatInput}
                         value={inputText}
                         onChange={(e) => setInputText(e.target.value)}

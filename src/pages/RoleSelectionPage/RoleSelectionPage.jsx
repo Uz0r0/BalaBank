@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext.jsx";
 import styles from '../style.module.css'; 
@@ -19,7 +20,17 @@ function RoleSelectionPage() {
 
     return (
         <div className={styles.wrapper}>
-            <div className={styles.content}>
+            <motion.div 
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ 
+                    type: "spring",
+                    stiffness: 150,
+                    damping: 15,
+                    duration: 0.4
+                }}
+                className={styles.content}
+            >
                 <p className={styles.title}>Выберите роль</p>
                 <div className={styles.choiseContainer}>
                     <figure>
@@ -42,14 +53,17 @@ function RoleSelectionPage() {
                     </figure>
                 </div>
                 <div className={styles.space100}></div>
-                <button 
+                <motion.button 
+                    whileTap={{ scale: 0.9 }}
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 100 }}
                     onClick={handleContinue}
                     className={styles.startBtn}
                     disabled={!isContinueEnabled}
                 >
                     Продолжить
-                </button>
-            </div>
+                </motion.button>
+            </motion.div >
         </div>
     )
 }

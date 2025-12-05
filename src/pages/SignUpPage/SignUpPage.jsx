@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from "framer-motion";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext.jsx";
@@ -35,7 +36,17 @@ function SignUpPage() {
 
     return (
         <div className={styles.wrapper}>
-            <div className={styles.card}>
+            <motion.div 
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ 
+                    type: "spring",
+                    stiffness: 150,
+                    damping: 15,
+                    duration: 0.4
+                }}
+                className={styles.card}
+            >
                 <h1 className={styles.regTitle}>Регистрация</h1>
 
                 <div className={styles.formGroup}>
@@ -72,13 +83,19 @@ function SignUpPage() {
 
                 <div className={styles.formGroup}>
                     <label>Номер телефона</label>
-                    <input 
-                        type="tel" 
-                        placeholder="+996 (XXX) XX-XX-XX" 
-                        required 
-                        value={phoneNumber} 
+                    <input
+                        type="tel"
+                        placeholder="+996 XXX-XXX-XXX"
+                        required
+                        value={
+                            phoneNumber
+                                .replace(/(\d{3})(\d{0,3})(\d{0,3})/, (_, a, b, c) =>
+                                    [a, b, c].filter(Boolean).join(" ")
+                                )
+                        }
                         onChange={(e) => {
-                            const onlyNums = e.target.value.trim().replace(/\D/g, "");
+                            const onlyNums = e.target.value.replace(/\D/g, "");
+
                             if (onlyNums.length <= 9) {
                                 setPhoneNumber(onlyNums);
                             }
@@ -108,7 +125,7 @@ function SignUpPage() {
                 <div className={styles.linkToLogIn}>
                     <span >Уже есть аккаунт? <a href="/login">Войдите</a> </span>
                 </div>
-            </div>
+            </motion.div>
         </div>
     )
 }

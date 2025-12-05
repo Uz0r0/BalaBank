@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTasks } from '../../context/TaskContext';
 import style from '../style.module.css'
 import Header from '../../components/Header/Header';
 import AvatarList from '../../components/AvatarList/AvatarList';
@@ -11,9 +12,6 @@ import Navigation from '../../components/Navigation/Navigation';
 import labudusImage from '../../assets/labubu.png';
 import bikeImage from '../../assets/bicycle.png';
 import headphonesImage from '../../assets/headphones.png';
-import booksIcon from '../../assets/book.png';
-import cribIcon from '../../assets/Baby-Cot.png';
-import trashIcon from '../../assets/bin.png';
 import parentProfileIcon from '../../assets/parent-profile-icon.jpg';
 
 const users = [
@@ -46,13 +44,8 @@ const goalData = [
     },
 ];
 
-const tasksData = [
-    { id: 1, text: 'Выполнить домашнюю работу', completed: false, icon: booksIcon, userType: 'parent', amount: 100},
-    { id: 2, text: 'Застелить кровать', completed: false, icon: cribIcon, userType: 'parent', amount: 50},
-    { id: 3, text: 'Выбросить мусор', completed: true, icon: trashIcon, userType: 'parent', amount: 50},
-];
-
 function ParentHomePage() {
+    const { tasks } = useTasks();
 
     return (
         <div>
@@ -85,12 +78,14 @@ function ParentHomePage() {
                 <a href='/createtask' className={style.linkTitle}>Задания &gt;</a>
                 <div className={style.space5}></div>
                 <div className={style.taskContainer}> 
-                    {tasksData.map(task => (
+                    {tasks.map(task => (
                         <TaskItem
                             key={task.id}
                             taskText={task.text}
                             isCompleted={task.completed}
                             iconUrl={task.icon}
+                            amount={task.amount}
+                            userType="parent"
                         />
                     ))}
                 </div>

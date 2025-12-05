@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { motion } from "framer-motion";
 import { Link } from 'react-router-dom'; 
 import styles from './Navigation.module.css';
 import { AuthContext } from '../../context/AuthContext.jsx'; 
@@ -30,7 +31,12 @@ function Navigation() {
     });
 
     return (
-        <nav className={styles.navWrapper}>
+        <motion.nav 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            className={styles.navWrapper}
+        >
             <div className={styles.navContainer}>
                 <div className={styles.navSection}>
                     {finalNavItems.slice(0, 2).map(item => (
@@ -54,7 +60,7 @@ function Navigation() {
                     ))}
                 </div>
             </div>
-        </nav>
+        </motion.nav>
     );
 }
 

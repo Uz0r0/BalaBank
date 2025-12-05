@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import styles from "./BalanceCard.module.css";
 import token from "../../assets/token2.png"; 
@@ -7,7 +8,12 @@ const BalanceCard = ({userType, amount, balance}) => {
     const isChild = userType === 'parent';
     const navigate = useNavigate();
     return (
-        <div className={styles.card}>
+        <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3 }}
+            className={styles.card}
+        >
             <div className={styles.content}>
                 <div className={styles.right}>
                     <div className={styles.iconWrap}>
@@ -31,9 +37,8 @@ const BalanceCard = ({userType, amount, balance}) => {
                     <span className={styles.label}>Отправлено сегодня</span>
                 )}
                 <span className={styles.value}>{balance}с</span>
-            </div>
-            
-        </div>
+            </div>    
+        </motion.div>
     );
 };
 
